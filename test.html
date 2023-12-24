@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='https://aframe.io/releases/0.9.2/aframe.min.js'></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+</head>
+<body>
+    <script>
+        THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/';
+        
+        // Function to change the 3D model
+        function changeModel() {
+            var modelEntity = document.querySelector('#model-entity');
+
+            // Replace the current model with a new one
+            var newModelURL = 'model.gltf'; // Replace with the path to your new GLTF model
+            modelEntity.setAttribute('gltf-model', newModelURL);
+        }
+    </script>
+    <a-scene embedded arjs  vr-mode-ui="enabled: false" arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; 
+    debugUIEnabled: false;'>
+        <a-marker preset="hiro" >
+            <a-entity gltf-model="saturn-orbiter.gltf" rotation="0 180 0" scale="0.15 0.15 0.15" ></a-entity>
+           
+           
+            <!-- <a-text value="Hello, AR!" position="0 0.5 0" align="center" color="pink"></a-text> url="/pattern-hiro.patt" type="pattern" -->
+        </a-marker>
+        <a-entity camera></a-entity>
+        <button onclick="changeModel()">Change Model</button>
+    </a-scene>
+    
+</body>
+</html>
