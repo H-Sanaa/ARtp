@@ -12,9 +12,10 @@
     <script src="https://threejs.org/build/three.js"></script>
   </head>
   <body>
-    <a-scene gps-camera="minDistance: 10">
+    <a-scene gps-camera="minDistance: 10" embedded arjs>
       <!-- Utilise le composant 'gps-entity-place' pour placer des objets en fonction de la localisation GPS -->
-      <a-entity gps-entity-place="latitude: 35.56308; longitude: 5.36026;">
+      <a-entity gps-entity-place="latitude:10.153940; longitude:36.858830 ;">
+        
         <!-- Ajoute ici ton objet image -->
         <a-image src="Pluto.jpg" scale="10 10 10"></a-image>
       </a-entity>
