@@ -6,10 +6,10 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://threejs.org/build/three.js"></script>
     <script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
-    
+    <title>Change 3D Model on Click</title>
   </head>
   <body>
-    <a-scene cursor="rayOrigin: mouse">
+    <a-scene>
       <!-- Sphere with Text -->
       <a-entity
         geometry="primitive: sphere; radius: 0.2"
@@ -30,37 +30,30 @@
     <script>
       AFRAME.registerComponent('clickable', {
         init: function () {
-          // Reference to the current entity (sphere)
           var el = this.el;
 
-          // Models to be loaded
           var models = ['model.gltf', 'saturn-orbiter.gltf'];
           var currentModelIndex = 0;
 
-          // Load initial model
           loadModel(models[currentModelIndex]);
 
-          // Event listener for click
           el.addEventListener('click', function () {
-            // Increment the model index
             currentModelIndex = (currentModelIndex + 1) % models.length;
 
-            // Remove the current model (if any)
             el.object3D.children.forEach((child) => {
               if (child.type === 'Mesh') {
+                console.log('Removing existing Mesh:', child);
                 el.object3D.remove(child);
               }
             });
 
-            // Load the new model
             loadModel(models[currentModelIndex]);
           });
 
-          // Function to load a 3D model
           function loadModel(modelPath) {
             var loader = new THREE.GLTFLoader();
             loader.load(modelPath, function (gltf) {
-              // Add the new model to the sphere
+              console.log('Loaded GLTF:', gltf);
               el.setObject3D('mesh', gltf.scene);
             });
           }
