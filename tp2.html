@@ -12,11 +12,11 @@
     <title>Virtual Button with A-Frame</title>
   </head>
   <body>
-    <a-scene embedded arjs  cursor="rayOrigin: mouse">
+    <a-scene  cursor="rayOrigin: mouse">
       <!-- Virtual button entity -->
-      <a-entity geometry="primitive: sphere; radius: 0.2" material="color:white" position="0 1.5 -4" id="virtualButton" clickable>
-        <a-text   value="click"  align="center"  color="gray"></a-text>
-        
+      <a-entity geometry="primitive: sphere; radius: 0.2" material="color: white" position="0 1.5 -4" id="virtualButton" clickable>
+        <!-- Text -->
+        <a-text value="Click" align="center" color="black"></a-text>
       </a-entity>
      
 
