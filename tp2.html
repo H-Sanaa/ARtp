@@ -14,9 +14,9 @@
   <body>
     <a-scene embedded arjs  cursor="rayOrigin: mouse">
       <!-- Virtual button entity -->
-      <a-entity geometry="primitive:sphere; radius=1.25; depth: 0.1" material="color:black"
+      <a-entity geometry="primitive:sphere; radius=4.25; depth: 0.1" material="color:black"
         position="0 1.5 -4" id="virtualButton" clickable >
-        <a-text   value="Click"   align="center" geometry="primitive: box; width: 0.1; height: 0.1; depth: 0.1" position="0 0 0.05" ></a-text>
+        <a-text   value="Click"   align="center" ></a-text>
       </a-entity>
       <a-entity gltf-model="saturn-orbiter.gltf" rotation="0 180 0" scale="0.15 0.15 0.15" ></a-entity>
 
