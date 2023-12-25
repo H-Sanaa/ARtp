@@ -28,37 +28,37 @@
     </a-scene>
 
     <script>
-      AFRAME.registerComponent('clickable', {
-        init: function () {
-          var el = this.el;
+    //   AFRAME.registerComponent('clickable', {
+    //     init: function () {
+    //       var el = this.el;
 
-          var models = ['model.gltf', 'saturn-orbiter.gltf'];
-          var currentModelIndex = 0;
+    //       var models = ['model.gltf', 'saturn-orbiter.gltf'];
+    //       var currentModelIndex = 0;
 
-          loadModel(models[currentModelIndex]);
+    //       loadModel(models[currentModelIndex]);
 
-          el.addEventListener('click', function () {
-            currentModelIndex = (currentModelIndex + 1) % models.length;
+    //       el.addEventListener('click', function () {
+    //         currentModelIndex = (currentModelIndex + 1) % models.length;
 
-            el.object3D.children.forEach((child) => {
-              if (child.type === 'Mesh') {
-                console.log('Removing existing Mesh:', child);
-                el.object3D.remove(child);
-              }
-            });
+    //         el.object3D.children.forEach((child) => {
+    //           if (child.type === 'Mesh') {
+    //             console.log('Removing existing Mesh:', child);
+    //             el.object3D.remove(child);
+    //           }
+    //         });
 
-            loadModel(models[currentModelIndex]);
-          });
+    //         loadModel(models[currentModelIndex]);
+    //       });
 
-          function loadModel(modelPath) {
-            var loader = new THREE.GLTFLoader();
-            loader.load(modelPath, function (gltf) {
-              console.log('Loaded GLTF:', gltf);
-              el.setObject3D('mesh', gltf.scene);
-            });
-          }
-        },
-      });
+    //       function loadModel(modelPath) {
+    //         var loader = new THREE.GLTFLoader();
+    //         loader.load(modelPath, function (gltf) {
+    //           console.log('Loaded GLTF:', gltf);
+    //           el.setObject3D('mesh', gltf.scene);
+    //         });
+    //       }
+    //     },
+    //   });
     </script>
   </body>
 </html>
