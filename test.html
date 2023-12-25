@@ -10,14 +10,12 @@
   </head>
   <body>
     <a-scene
-      embedded
-      arjs="detectionMode: mono_and_matrix; matrixCodeType: 3x3; sourceType: webcam;"
-    >
+      embedded arjs cursor="rayOrigin: mouse"   >
       <!-- AR Button -->
-      <a-entity>
-        <a-box position="0 0.5 0" color="blue" width="0.4" height="0.2" depth="0.1">
+      <a-entity  geometry="primitive: sphere; radius: 0.2"  material="color: white"  position="0 1.5 -4"
+      id="virtualButton" clickable>
             <a-text value="Click me!" align="center" position="0 0 0.05" color="white"></a-text>
-          </a-box>
+          
       </a-entity>
       
     
