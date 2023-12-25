@@ -2,40 +2,62 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"/>
-      <script src='https://aframe.io/releases/0.9.2/aframe.min.js'></script>
-    <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
-    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-
-   
-    <title>Virtual Button with A-Frame</title>
+    <script src="https://threejs.org/build/three.js"></script>
+    <title>Change 3D Model on Click</title>
   </head>
   <body>
-    <a-scene  cursor="rayOrigin: mouse">
-      <!-- Virtual button entity -->
-      <a-entity geometry="primitive: sphere; radius: 0.2" material="color: white" position="0 1.5 -4" id="virtualButton" clickable>
-        <!-- Text -->
+    <a-scene>
+      <!-- Sphere with Text -->
+      <a-entity  geometry="primitive: sphere; radius: 0.2"  material="color: white"  position="0 1.5 -4"
+        id="virtualButton"  clickable>
         <a-text value="Click" align="center" color="black"></a-text>
       </a-entity>
-     
 
-      <!-- Camera and cursor -->
+      <!-- Camera and Cursor -->
       <a-camera>
         <a-cursor></a-cursor>
       </a-camera>
     </a-scene>
 
     <script>
-      // Click event handler for the virtual button
       AFRAME.registerComponent('clickable', {
         init: function () {
-          this.el.addEventListener('click', function () {
-            alert('Button Clicked!');
-            // Add your button click logic here
+          // Reference to the current entity (sphere)
+          var el = this.el;
+
+          // Models to be loaded
+          var models = ['model.gltf', 'saturn-orbiter.gltf'];
+          var currentModelIndex = 0;
+
+          // Load initial model
+          loadModel(models[currentModelIndex]);
+
+          // Event listener for click
+          el.addEventListener('click', function () {
+            // Increment the model index
+            currentModelIndex = (currentModelIndex + 1) % models.length;
+            
+            // Remove the current model (if any)
+            el.object3D.children.forEach((child) => {
+              if (child.type === 'Mesh') {
+                el.object3D.remove(child);
+              }
+            });
+
+            // Load the new model
+            loadModel(models[currentModelIndex]);
           });
+
+          // Function to load a 3D model
+          function loadModel(modelPath) {
+            var loader = new THREE.OBJLoader();
+            loader.load(modelPath, function (object) {
+              // Add the new model to the sphere
+              el.setObject3D('mesh', object);
+            });
+          }
         },
       });
     </script>
