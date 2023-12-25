@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://threejs.org/build/three.js"></script>
-   
+    <script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
+    
   </head>
   <body>
-    <a-scene embedded arjs cursor="rayOrigin: mouse">
+    <a-scene>
       <!-- Sphere with Text -->
-      <a-entity  geometry="primitive: sphere; radius: 0.2"  material="color: white"  position="0 1.5 -4"
-        id="virtualButton"  clickable>
+      <a-entity
+        geometry="primitive: sphere; radius: 0.2"
+        material="color: white"
+        position="0 1.5 -4"
+        id="virtualButton"
+        clickable
+      >
         <a-text value="Click" align="center" color="black"></a-text>
       </a-entity>
 
@@ -22,11 +28,10 @@
     </a-scene>
 
     <script>
-        
       AFRAME.registerComponent('clickable', {
         init: function () {
           // Reference to the current entity (sphere)
-          var el=this.el
+          var el = this.el;
 
           // Models to be loaded
           var models = ['model.gltf', 'saturn-orbiter.gltf'];
@@ -39,7 +44,7 @@
           el.addEventListener('click', function () {
             // Increment the model index
             currentModelIndex = (currentModelIndex + 1) % models.length;
-            
+
             // Remove the current model (if any)
             el.object3D.children.forEach((child) => {
               if (child.type === 'Mesh') {
