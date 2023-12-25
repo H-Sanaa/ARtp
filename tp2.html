@@ -25,7 +25,7 @@
       AFRAME.registerComponent('clickable', {
         init: function () {
           // Reference to the current entity (sphere)
-          var el = this.el;
+          var el = document.getElementById('virtualButton');
 
           // Models to be loaded
           var models = ['model.gltf', 'saturn-orbiter.gltf'];
