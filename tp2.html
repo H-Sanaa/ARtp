@@ -6,6 +6,8 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://threejs.org/build/three.js"></script>
     <script src="https://threejs.org/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
     <title>Change 3D Model on Click</title>
   </head>
   <body>
@@ -27,38 +29,6 @@
       </a-camera>
     </a-scene>
 
-    <script>
-    //   AFRAME.registerComponent('clickable', {
-    //     init: function () {
-    //       var el = this.el;
 
-    //       var models = ['model.gltf', 'saturn-orbiter.gltf'];
-    //       var currentModelIndex = 0;
-
-    //       loadModel(models[currentModelIndex]);
-
-    //       el.addEventListener('click', function () {
-    //         currentModelIndex = (currentModelIndex + 1) % models.length;
-
-    //         el.object3D.children.forEach((child) => {
-    //           if (child.type === 'Mesh') {
-    //             console.log('Removing existing Mesh:', child);
-    //             el.object3D.remove(child);
-    //           }
-    //         });
-
-    //         loadModel(models[currentModelIndex]);
-    //       });
-
-    //       function loadModel(modelPath) {
-    //         var loader = new THREE.GLTFLoader();
-    //         loader.load(modelPath, function (gltf) {
-    //           console.log('Loaded GLTF:', gltf);
-    //           el.setObject3D('mesh', gltf.scene);
-    //         });
-    //       }
-    //     },
-    //   });
-    </script>
   </body>
 </html>
