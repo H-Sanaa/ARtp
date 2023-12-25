@@ -22,57 +22,45 @@
     </a-scene>
 
     <script>
-          var el = document.getElementById('virtualButton');
-        // Models to be loaded
-         var models = ['model.gltf', 'saturn-orbiter.gltf'];
-         if(el.click){
-             for(let i=0;i<models.length;i++){
-            console.log('salut')
-         }
-         }
-         else{
-            console.log('no')
-         }
         
+      AFRAME.registerComponent('clickable', {
+        init: function () {
+          // Reference to the current entity (sphere)
+          var el=this.el
 
-    //   AFRAME.registerComponent('clickable', {
-    //     init: function () {
-    //       // Reference to the current entity (sphere)
-    //       var el = document.getElementById('virtualButton');
+          // Models to be loaded
+          var models = ['model.gltf', 'saturn-orbiter.gltf'];
+          var currentModelIndex = 0;
 
-    //       // Models to be loaded
-    //       var models = ['model.gltf', 'saturn-orbiter.gltf'];
-    //       var currentModelIndex = 0;
+          // Load initial model
+          loadModel(models[currentModelIndex]);
 
-    //       // Load initial model
-    //       loadModel(models[currentModelIndex]);
-
-    //       // Event listener for click
-    //       el.addEventListener('click', function () {
-    //         // Increment the model index
-    //         currentModelIndex = (currentModelIndex + 1) % models.length;
+          // Event listener for click
+          el.addEventListener('click', function () {
+            // Increment the model index
+            currentModelIndex = (currentModelIndex + 1) % models.length;
             
-    //         // Remove the current model (if any)
-    //         el.object3D.children.forEach((child) => {
-    //           if (child.type === 'Mesh') {
-    //             el.object3D.remove(child);
-    //           }
-    //         });
+            // Remove the current model (if any)
+            el.object3D.children.forEach((child) => {
+              if (child.type === 'Mesh') {
+                el.object3D.remove(child);
+              }
+            });
 
-    //         // Load the new model
-    //         loadModel(models[currentModelIndex]);
-    //       });
+            // Load the new model
+            loadModel(models[currentModelIndex]);
+          });
 
-    //       // Function to load a 3D model
-    //       function loadModel(modelPath) {
-    //         var loader = new THREE.OBJLoader();
-    //         loader.load(modelPath, function (object) {
-    //           // Add the new model to the sphere
-    //           el.setObject3D('mesh', object);
-    //         });
-    //       }
-    //     },
-    //   });
+          // Function to load a 3D model
+          function loadModel(modelPath) {
+            var loader = new THREE.GLTFLoader();
+            loader.load(modelPath, function (gltf) {
+              // Add the new model to the sphere
+              el.setObject3D('mesh', gltf.scene);
+            });
+          }
+        },
+      });
     </script>
   </body>
 </html>
