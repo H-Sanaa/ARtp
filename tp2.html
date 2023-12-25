@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR.js Model Change Example</title>
-    <script src='https://aframe.io/releases/0.9.2/aframe.min.js'></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"/>
+      <script src='https://aframe.io/releases/0.9.2/aframe.min.js'></script>
     <script src="https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js"></script>
     <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-    <script>
-        THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/';
-        
-        // Function to change the 3D model
-        function changeModel() {
-            var modelEntity = document.querySelector('#model-entity');
-
-            // Replace the current model with a new one
-            var newModelURL = 'model.gltf'; // Replace with the path to your new GLTF model
-            modelEntity.setAttribute('gltf-model', newModelURL);
-        }
-    </script>
-</head>
-<body style="margin: 0; overflow: hidden;">
-
-    <!-- Button to change the 3D model -->
-    
-
-    <a-scene
-        vr-mode-ui="enabled: false"
-        embedded
-        arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; 
-        debugUIEnabled: false;'>
-
-        <!-- Use an ID for the model entity for easy selection -->
-        <a-entity id="model-entity" gltf-model="saturn-orbiter.gltf" rotation="0 180 0" scale="0.15 0.15 0.15" 
-        gps-entity-place="longitude:-5.362444 ; latitude:35.561721  ;" animation-mixer/>
-        <a-camera gps-camera rotation-reader></a-camera>
-        <button onclick="changeModel()">Change Model</button>
-	</a-scene>
    
+    <title>Virtual Button with A-Frame</title>
+  </head>
+  <body>
+    <a-scene cursor="rayOrigin: mouse">
+      <!-- Virtual button entity -->
+      <a-entity
+        geometry="primitive: box; width: 2; height: 1; depth: 0.1"
+        material="color: #4CC3D9"
+        position="0 1.5 -4"
+        id="virtualButton"
+        clickable
+      >
+        <a-text
+          value="Click me!"
+          align="center"
+          position="0 0 0.05"
+        ></a-text>
+      </a-entity>
 
-</body>
+      <!-- Camera and cursor -->
+      <a-camera>
+        <a-cursor></a-cursor>
+      </a-camera>
+    </a-scene>
+
+    <script>
+      // Click event handler for the virtual button
+      AFRAME.registerComponent('clickable', {
+        init: function () {
+          this.el.addEventListener('click', function () {
+            alert('Button Clicked!');
+            // Add your button click logic here
+          });
+        },
+      });
+    </script>
+  </body>
 </html>
