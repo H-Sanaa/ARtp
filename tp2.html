@@ -12,21 +12,13 @@
     <title>Virtual Button with A-Frame</title>
   </head>
   <body>
-    <a-scene cursor="rayOrigin: mouse">
+    <a-scene embedded arjs  cursor="rayOrigin: mouse">
       <!-- Virtual button entity -->
-      <a-entity
-        geometry="primitive: box; width: 2; height: 1; depth: 0.1"
-        material="color: #4CC3D9"
-        position="0 1.5 -4"
-        id="virtualButton"
-        clickable
-      >
-        <a-text
-          value="Click me!"
-          align="center"
-          position="0 0 0.05"
-        ></a-text>
+      <a-entity geometry="primitive: box; width: 2; height: 1; depth: 0.1" material="color:black"
+        position="0 1.5 -4" id="virtualButton" clickable >
+        <a-text   value="Click me!"   align="center" position="0 0 0.05" ></a-text>
       </a-entity>
+      <a-entity gltf-model="saturn-orbiter.gltf" rotation="0 180 0" scale="0.15 0.15 0.15" ></a-entity>
 
       <!-- Camera and cursor -->
       <a-camera>
